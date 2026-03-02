@@ -1,0 +1,73 @@
+@startuml
+
+package "controllers" {
+  class PersonController
+  class UserController
+  class ProductController
+  class CartController
+  class OrderController
+}
+
+package "services" {
+  class PersonService
+  class UserService
+  class ProductService
+  class CartService
+  class OrderService
+}
+
+package "repositories" {
+  interface IPersonRepository
+  interface IUserRepository
+  interface IProductRepository
+  interface ICartRepository
+  interface IOrderRepository
+}
+
+package "entities" {
+  class Person
+  class User
+  class Role
+  class Product
+  class Category
+  class Cart
+  class CartItems
+  class Order
+  class OrderItem
+  class PaymentMethod
+  class Supplier
+  class Inventary
+}
+
+database "Relational DB" {
+}
+
+' Controllers → Services
+PersonController --> PersonService
+UserController --> UserService
+ProductController --> ProductService
+CartController --> CartService
+OrderController --> OrderService
+
+' Services → Repositories
+PersonService --> IPersonRepository
+UserService --> IUserRepository
+ProductService --> IProductRepository
+CartService --> ICartRepository
+OrderService --> IOrderRepository
+
+' Repositories → Entities
+IPersonRepository --> Person
+IUserRepository --> User
+IProductRepository --> Product
+ICartRepository --> Cart
+IOrderRepository --> Order
+
+' Repositories → DB
+IPersonRepository --> "Relational DB"
+IUserRepository --> "Relational DB"
+IProductRepository --> "Relational DB"
+ICartRepository --> "Relational DB"
+IOrderRepository --> "Relational DB"
+
+@enduml
